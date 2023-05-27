@@ -1,2 +1,2 @@
 # alu-shell
-Learn basics
+Learn shell basics.
