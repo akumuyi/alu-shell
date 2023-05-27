@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Check if the current directory is a Git repository
-if [ -d .git ]; then
-  # Get the absolute path of the current working directory
-  cwd=$(pwd)
+[ -d .git ] && echo "Absolute path of the current working directory in Git: $(pwd)" || echo "Current directory is not a Git repository."
 
-  # Print the absolute path of current working directory
-  echo "Absolute path of the current working directory:"
-  echo "$cwd"
-else
-  echo "Current directory is not a Git repository."
-fi
 
