@@ -1,4 +1,2 @@
 #!/bin/bash
-
 [ -d .git ] && echo "Absolute path of cwd: $(pwd)" || echo "cd is not a Git repo"
-
