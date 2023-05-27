@@ -1,0 +1,2 @@
+# alu-shell
+Learn basics
