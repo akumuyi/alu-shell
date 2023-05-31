@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod -R 111 /alu-shell/permissions/README.md
+chmod -R 111 /README.md
