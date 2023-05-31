@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod ugo+x --preserve-root /README.md
+chmod -R u+rwx,g+rwx,o+rwx .
