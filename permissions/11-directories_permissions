@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod 111 --preserve-root /README.md
+chmod 111 --preserve-root /permissions/README.md
