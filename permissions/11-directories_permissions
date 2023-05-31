@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod -R u+x g+x o+x /alu-shell/permissions/README.md
+chmod -R ugo+rx /alu-shell/permissions/README.md
