@@ -1,2 +1,2 @@
 #!/bin/bash
-rm "*.js" ./io_redirections_and_filters
+rm *.js ./10-no_more_js
