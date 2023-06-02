@@ -1,2 +1,2 @@
 #!/bin/bash
-head 10 . | ls -l
+head 10 | ls -l
