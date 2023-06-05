@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "Hello $(user)"
+current_user="whoami" | alias current_user="MyUser" | echo "hello $(current_user)"
