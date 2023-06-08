@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+# This bash script prints 'Best School" to the terminal ten times.
 for i in (10):
 	echo "Best School"
