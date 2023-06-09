@@ -13,7 +13,7 @@ while [ $FHOUR -le $LHOUR ]; do
     MIN=$FMIN
     while [ $MIN -le $LMIN ]; do
         # Display the time
-        printf "%02d:%02d\n" $FHOUR $MIN
+        echo "$(printf "%02d" $FHOUR):$(printf "%02d" $MIN)"
 
         # Increment minute
         MIN=$((MIN + 1))
@@ -25,3 +25,4 @@ while [ $FHOUR -le $LHOUR ]; do
     # Increment hour
     FHOUR=$((FHOUR + 1))
 done
+
