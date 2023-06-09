@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-# Thi script displays 'Best School' ten times, but displays 'Best School ' and 'Hi' on the 9th iteration
+#Thiscript displays 'Best School' ten times, but displays 'Best School ' and 'Hi' on the 9th 
+#iteration.
 
 # Initializes the counter to 0
 
