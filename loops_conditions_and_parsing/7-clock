@@ -19,6 +19,9 @@ while [ $FHOUR -le $LHOUR ]; do
         MIN=$((MIN + 1))
     done
 
+    # Reset minute to starting value
+    FMIN=1
+
     # Increment hour
     FHOUR=$((FHOUR + 1))
-done 
+done
