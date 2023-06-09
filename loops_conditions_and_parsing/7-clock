@@ -6,22 +6,18 @@
 hour=0
 minute=1
 
-# Loop to display time for 12 hours and 59 minutes
+# Loop for 12 hours
 while [ $hour -le 12 ]; do
-    while [ $minute -le 59 ]; do
-        if [ $hour -eq 4 ] && [ $minute -eq 1 ]; then
-            echo "4 and then bad luck from China"
-        elif [ $hour -eq 9 ] && [ $minute -eq 1 ]; then
-            echo "9 and then bad luck from Japan"
-        elif [ $hour -eq 17 ] && [ $minute -eq 1 ]; then
-            echo "17 and then bad luck from Italy"
-        else
-            printf "%02d:%02d\n" $hour $minute
-        fi
+    # Display hour and minute
+    printf "%02d:%02d\n" $hour $minute
 
-        minute=$((minute + 1))
-    done
+    # Increment minute by 1
+    minute=$((minute + 1))
 
-    hour=$((hour + 1))
-    minute=1
-done | head -n 70
+    # Check if minute reached 60
+    if [ $minute -eq 60 ]; then
+        # Reset minute to 1 and increment hour by 1
+        minute=1
+        hour=$((hour + 1))
+    fi
+done
