@@ -2,18 +2,26 @@
 # This script displays the time for 12hrs 59minutes in the 12hr format
 
 # Initialize hour to 0 and minute to 1
+
 hour=0
 minute=1
 
 # Loop to display time for 12 hours and 59 minutes
 while [ $hour -le 12 ]; do
     while [ $minute -le 59 ]; do
-        printf "%02d:%02d\n" $hour $minute
+        if [ $hour -eq 4 ] && [ $minute -eq 1 ]; then
+            echo "4 and then bad luck from China"
+        elif [ $hour -eq 9 ] && [ $minute -eq 1 ]; then
+            echo "9 and then bad luck from Japan"
+        elif [ $hour -eq 17 ] && [ $minute -eq 1 ]; then
+            echo "17 and then bad luck from Italy"
+        else
+            printf "%02d:%02d\n" $hour $minute
+        fi
 
         minute=$((minute + 1))
     done
 
     hour=$((hour + 1))
-    minute=0
+    minute=1
 done | head -n 70
-
