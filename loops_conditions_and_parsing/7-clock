@@ -2,11 +2,12 @@
 # This script displays the time for 12hrs 59minutes in the 12hr format
 
 hour=0
-minute=1
 
 # Loop through hours
 while [ $hour -le 12 ]; do
     echo "Hour: $hour"
+
+    minute=1
 
     # Loop through minutes
     while [ $minute -le 59 ]; do
