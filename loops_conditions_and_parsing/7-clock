@@ -16,3 +16,4 @@ while [ $hour -le 12 ]; do
     hour=$((hour + 1))
     minute=0
 done | head -n 70
+
