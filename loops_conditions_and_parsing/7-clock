@@ -1,28 +1,19 @@
 #!/usr/bin/env bash
 # This script displays the time for 12hrs 59minutes in the 12hr format
 
-# Initialize hour to 0 and minute to 1
-FHOUR=0
-LHOUR=12
-FMIN=1
-LMIN=59
+hour=0
 
 # Loop through hours
-while [ $FHOUR -le $LHOUR ]; do
-    # Loop through minutes
-    MIN=$FMIN
-    while [ $MIN -le $LMIN ]; do
-        # Display the time
-        echo "$(printf "%02d" $FHOUR):$(printf "%02d" $MIN)"
+while [ $hour -le 12 ]; do
+    echo "Hour: $hour"
 
-        # Increment minute
-        MIN=$((MIN + 1))
+    minute=1
+
+    # Loop through minutes
+    while [ $minute -le 59 ]; do
+        echo "$minute"
+        ((minute++))
     done
 
-    # Reset minute to starting value
-    FMIN=1
-
-    # Increment hour
-    FHOUR=$((FHOUR + 1))
+    ((hour++))
 done
-
