@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Thi script displays 'Best School' ten times, but displays 'Best School ' and 'Hi' on the 9th iteration
+
+# Initializes the counter to 0
+
+counter=0
+
+# Runs a while loop as long as the value of 'counter' is less than ten
+
+while [ $counter -lt 10 ]
+do
+
+# Prints 'Best School', and 'Hi' on a new line if 'counter' is equal to 8 (i.e the 9th iterat
+# ion of the loop), otherwise it returns 'Best School'
+
+    if [ $counter -eq 8 ]
+    then
+        echo "Best School"
+        echo "Hi"
+    else
+        echo "Best School"
+    fi
+
+# Increment the counter at the end of each successful loop
+    ((counter++))
+done
