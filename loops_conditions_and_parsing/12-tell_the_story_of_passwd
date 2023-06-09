@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
-# Read the file /etc/passwd line by line using a while loop
+# Read /etc/passwd line by line
 while IFS=: read -r username _ userid groupid _ realname homedir shell; do
+    # Get the password field from /etc/shadow
+    password=$(grep "^$username:" /etc/shadow | cut -d: -f2)
+    
+    # Replace the password field with an asterisk if found, or leave it empty
+    if [[ -n "$password" ]]; then
+        password="*"
+    fi
+    
     # Print the story about the user
     echo "The user $username is part of the $groupid gang, lives in $homedir, and rides $shell."
-    echo "User $userid's place is protected by the passcode *."
+    echo "User $userid's place is protected by the passcode $password."
     echo "More information about the user: $realname"
     echo
 done < "/etc/passwd"
