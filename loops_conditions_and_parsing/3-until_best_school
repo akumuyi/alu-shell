@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script prints 'Best School' ten times to the terminal using the 'until' loop
+
+# Initialize the counter to zero
+counter=0
+
+# Runs the loop until the value of the counter is greater than or equal to ten
+until [ $counter -ge 10 ]
+
+# Prints the string 'Best School' for each iteration of the loop
+do
+    echo "Best School"
+
+# Increases the value of the counter until the last iteration
+    ((counter++))
+done
