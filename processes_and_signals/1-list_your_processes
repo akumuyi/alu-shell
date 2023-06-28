@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
-# Display a header for the process list
-echo "PID    PPID   USER          COMMAND"
-
-# Iterate over each running process
-while read -r line; do
-  pid=$(echo "$line" | awk '{print $1}')        # Process ID
-  ppid=$(echo "$line" | awk '{print $2}')       # Parent Process ID
-  user=$(echo "$line" | awk '{print $3}')       # User
-  command=$(echo "$line" | awk '{print $NF}')   # Command
-
-  # Display the process information
-  printf "%-6s %-6s %-13s %s\n" "$pid" "$ppid" "$user" "$command"
-done < <(ps -e -o pid,ppid,user,comm --no-headers)
-
+# Display the PID of the current process
+echo "PID"
+echo "$$"
 
