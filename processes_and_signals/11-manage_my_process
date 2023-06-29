@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
 # Init script to manage the execution of manage_my_process
+
+# Check if the process is already running
+check_process_running() {
+  if [ -f /var/run/my_process.pid ]; then
+    pid=$(cat /var/run/my_process.pid)
+    if ps -p "$pid" > /dev/null; then
+      return 0  # Process is running
+    else
+      rm /var/run/my_process.pid
+    fi
+  fi
+  return 1  # Process is not running
+}
+
 case $1 in
   start)
-    if [ -f /var/run/my_process.pid ]; then
+    if check_process_running; then
       echo "manage_my_process already started."
     else
       echo $$ > /var/run/my_process.pid
@@ -11,7 +25,7 @@ case $1 in
     fi
     ;;
   stop)
-    if [ -f /var/run/my_process.pid ]; then
+    if check_process_running; then
       pid=$(cat /var/run/my_process.pid)
       rm /var/run/my_process.pid
       echo "manage_my_process stopped."
@@ -21,7 +35,9 @@ case $1 in
     fi
     ;;
   restart)
-    $0 stop
+    if check_process_running; then
+      $0 stop
+    fi
     $0 start
     echo "manage_my_process restarted."
     ;;
@@ -29,5 +45,4 @@ case $1 in
     echo "Usage: $0 {start|stop|restart}"
     ;;
 esac
-
 
