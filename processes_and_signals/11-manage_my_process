@@ -21,7 +21,7 @@ case $1 in
     else
       echo $$ > /var/run/my_process.pid
       echo "manage_my_process started."
-      /path/to/manage_my_process start
+      /alu-shell/processes_and_signals/manage_my_process start
     fi
     ;;
   stop)
@@ -29,7 +29,7 @@ case $1 in
       pid=$(cat /var/run/my_process.pid)
       rm /var/run/my_process.pid
       echo "manage_my_process stopped."
-      /path/to/manage_my_process stop
+      /alu-shell/processes_and_signals/manage_my_process stop
     else
       echo "manage_my_process already stopped."
     fi

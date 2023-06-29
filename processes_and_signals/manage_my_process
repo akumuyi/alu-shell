@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bash script to manage the execution of manage_my_process.sh
+# Bash script to manage the execution of manage_my_process
 
 # Check if the process is already running
 check_process_running() {
@@ -46,6 +46,7 @@ case $1 in
     ;;
   *)
     echo "Usage: manage_my_process {start|stop|restart}"
+    exit 1
     ;;
 esac
 
