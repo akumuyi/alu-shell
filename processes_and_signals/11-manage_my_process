@@ -1,34 +1,28 @@
 #!/usr/bin/env bash
-# Description: Init script to manage the execution of manage_my_process
-
-PID_FILE="/var/run/my_process.pid"
-
+# Init script to manage the execution of manage_my_process
 case $1 in
   start)
-    if [[ -f "$PID_FILE" ]]; then
-      echo "manage_my_process is already running."
+    if [ -f /var/run/my_process.pid ]; then
+      echo "manage_my_process already started."
     else
-      ./manage_my_process &
-      echo $! > "$PID_FILE"
+      echo $$ > /var/run/my_process.pid
       echo "manage_my_process started."
+      /path/to/manage_my_process start
     fi
     ;;
   stop)
-    if [[ -f "$PID_FILE" ]]; then
-      kill "$(cat "$PID_FILE")"
-      rm "$PID_FILE"
+    if [ -f /var/run/my_process.pid ]; then
+      pid=$(cat /var/run/my_process.pid)
+      rm /var/run/my_process.pid
       echo "manage_my_process stopped."
+      /path/to/manage_my_process stop
     else
-      echo "manage_my_process is not running."
+      echo "manage_my_process already stopped."
     fi
     ;;
   restart)
-    if [[ -f "$PID_FILE" ]]; then
-      kill "$(cat "$PID_FILE")"
-      rm "$PID_FILE"
-    fi
-    ./manage_my_process &
-    echo $! > "$PID_FILE"
+    $0 stop
+    $0 start
     echo "manage_my_process restarted."
     ;;
   *)
