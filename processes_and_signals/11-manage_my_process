@@ -1,49 +1,29 @@
 #!/usr/bin/env bash
 # Init script to manage the execution of manage_my_process.sh
 
-# Check if the process is already running
-check_process_running() {
-  if [ -f /var/run/my_process.pid ]; then
-    pid=$(cat /var/run/my_process.pid)
-    if ps -p "$pid" > /dev/null; then
-      return 0  # Process is running
-    else
-      rm /var/run/my_process.pid
+if [[ "$#" == "1" ]]; then
+  if [[ "$1" == "start" ]]; then
+    ./manage_my_process &
+    echo "$!" > /var/run/my_process.pid
+    echo "manage_my_process started"
+  elif [[ "$1" == "stop" ]]; then
+    if test -f "/var/run/my_process.pid"; then
+      kill "$(cat /var/run/my_process.pid)"
     fi
+    rm /var/run/my_process.pid
+    echo "manage_my_process stopped"
+  elif [[ "$1" == "restart" ]]; then
+    # stop program
+    if test -f "/var/run/my_process.pid"; then
+      kill "$(cat /var/run/my_process.pid)"
+    fi
+    # start program
+    ./manage_my_process &
+    echo "$!" > /var/run/my_process.pid
+    echo "manage_my_process restarted"
+  else
+    echo "Usage: manage_my_process {start|stop|restart}"
   fi
-  return 1  # Process is not running
-}
-
-case $1 in
-  start)
-    if check_process_running; then
-      echo "manage_my_process already started."
-    else
-      echo $$ > /var/run/my_process.pid
-      echo "manage_my_process started."
-      /alu-shell/processes_and_signals/manage_my_process.sh start
-    fi
-    ;;
-  stop)
-    if check_process_running; then
-      pid=$(cat /var/run/my_process.pid)
-      rm /var/run/my_process.pid
-      echo "manage_my_process stopped."
-      /alu-shell/processes_and_signals/manage_my_process.sh stop
-    else
-      echo "manage_my_process already stopped."
-    fi
-    ;;
-  restart)
-    if check_process_running; then
-      $0 stop
-    fi
-    $0 start
-    echo "manage_my_process restarted."
-    ;;
-  *)
-    echo "Usage: $0 {start|stop|restart}"
-    exit 1
-    ;;
-esac
-
+else
+  echo "Usage: manage_my_process {start|stop|restart}"
+fi
